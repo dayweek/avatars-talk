@@ -1,0 +1,30 @@
+<%  content_for :body_attributes, "onload='start();'" %>
+<%= avatar_models(@posts) %>
+<%= stylesheet_link_tag 'posts' %>
+
+<h2>Posts</h2>
+<% if current_user %>
+  <p><%= link_to 'New Post', new_post_path %></p>
+<% else %>
+  <p>You need to be <%= link_to 'logged in', new_user_session_path %> in order to submit a post.</p>
+<% end %>
+<%- unless @posts.empty? %>
+<div id="messagebox">
+<table class="table table-striped">
+<% @posts.each do |post| %>
+  <tr>
+    <td class="avatar_column">
+      <div title="Drag to rotate" id="avatar_placeholder<%= post.id %>" class="avatar_placeholder"></div>
+      <time title="<%= post.created_at %>"><%= time_ago_in_words(post.created_at) %> ago</time>
+    </td>
+    <td>
+      <strong><%= post.user.login %></strong>
+      <p><%= post.text %></p>
+    </td>
+  </tr>
+<% end %>
+</table>
+</div>
+<%- else %>
+<p>No posts.</p>
+<%- end %>

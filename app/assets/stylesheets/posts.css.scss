@@ -1,0 +1,19 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.avatar_placeholder {
+  width:120px;
+  height: 120px;
+  z-index: 101;
+}
+
+.avatar_column {
+  width:120px;
+}
+
+.avatar_column time {
+  display: block;
+  text-align: center;
+}

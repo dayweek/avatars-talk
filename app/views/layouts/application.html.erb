@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Avatars Talk</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold|Inconsolata|PT+Sans:400,700">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag :application %>
+</head>
+<body <%= content_for?(:body_attributes) ? yield(:body_attributes) : '' %>>
+<div class="container">
+<div class="row">
+<div class="span11">
+<h1><%= link_to 'Avatars Talk', root_path %></h1>
+</div>
+</div>
+<div class="row">
+<div class="span2">
+  <div class="well" style="padding: 8px 0;">
+ <ul class="nav nav-list">
+   <li class="nav-header">MENU</li>
+    <li>
+  <%= link_to posts_path do %>
+  <i class="icon-comment"></i>
+  Posts
+  <% end  %>
+  </li>
+<% if current_user %>
+  <li>
+  <%= link_to edit_user_path do %>
+  <i class="icon-user"></i>
+  My Profile
+  <% end  %>
+  </li>
+  <li>
+  <%= link_to user_session_path, method: 'delete' do %>
+    <i class="icon-signout"></i>
+    Logout
+  <% end %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to new_user_session_path do %>
+    <i class="icon-signin"></i>
+    Log in
+  <% end %>
+  </li>
+  <li>
+  
+  <%= link_to new_user_path do %>
+    <i class="icon-"></i>
+    Register
+  <% end %>
+  </li>
+<% end %>
+  <li class="divider"></li>
+  <li>
+  <%= link_to about_path do %>
+  <i class="icon-info-sign"></i>
+  About
+  <% end  %>
+  </li>
+</ul>
+</div>
+ </div>
+
+
+ <div class="span9">
+  <div class="well" style="padding: 8px;">
+<% if flash[:alert] %>
+  <div class="alert alert-error"><%= flash[:alert] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<%= yield %>
+
+</div> 
+</div> 
+
+</div> 
+</div>
+</body>
+</html>

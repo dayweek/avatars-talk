@@ -1,0 +1,21 @@
+<h2>Edit My Profile</h2>
+
+<%= form_for @user, :url => user_path, :html => { :class => "form-horizontal" } do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-error">
+      <h2>Oh snap! <%= pluralize(@user.errors.count, "error") %> occured while processing your form:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+  <%= render :partial => "form", :object => f %>
+  <div class="form-actions">
+    <%= f.submit "Update", :class => 'btn btn-primary' %>
+  </div>
+  </fieldset>
+<% end %>
